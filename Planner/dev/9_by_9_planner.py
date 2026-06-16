@@ -43,7 +43,15 @@ def populating_middle_of_load_list(leftcorner: tuple, key: str, data: dict, load
 loaded_data = load_json("Data/shohei_ohtani_goal_matrix.json")
 
 load_list = [[0 for _ in range(9)] for _ in range(9)]
-populating_middle_of_load_list((3, 3), "Supporting Improvements", loaded_data, load_list)
+for x in range(3):
+    for y in range(3):
+        list_idx = x * 3 + y
+        if list_idx < 4:
+            populating_load_list((x*3, y*3), f"Supporting Improvements {list_idx+1} subgoals", loaded_data, load_list)
+        elif list_idx == 4:
+            populating_middle_of_load_list((x*3, y*3), "Supporting Improvements", loaded_data, load_list)
+        else:
+            populating_load_list((x*3, y*3), f"Supporting Improvements {list_idx} subgoals", loaded_data, load_list)
 
 # for i in range(3):
 #     for j in range(3):
@@ -52,7 +60,8 @@ populating_middle_of_load_list((3, 3), "Supporting Improvements", loaded_data, l
 #             populating_load_list((i * 3, j * 3), f"Supporting Improvements {list_idx} subgoals", loaded_data, load_list)
 #         elif list_idx == 4:
 
-print(load_list)
+for load in load_list:
+    print(load)
 
 
 # # Initialize the main application window
